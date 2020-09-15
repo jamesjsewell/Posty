@@ -5,11 +5,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>Blog</h4>
-    <hr />
+    <h4>@Html.DisplayFor(model => model.Blog.Url)</h4>
+    <br />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Blog.Url)
@@ -21,5 +19,46 @@
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Blog.BlogId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a href='javascript:history.go(-1)'>Back</a>
+</div>
+
+<br/>
+<br/>
+
+<div>
+    <h4>Posts</h4>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Post[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Post[0].Content)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Post)
+            {
+                if (item.BlogId == Model.Blog.BlogId) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        <a asp-page="../Posts/Edit" asp-route-id="@item.PostId">Edit</a> |
+                        <a asp-page="../Posts/Details" asp-route-id="@item.PostId">Details</a> |
+                        <a asp-page="../Posts/Delete" asp-route-id="@item.PostId">Delete</a>
+                    </td>
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
 </div>

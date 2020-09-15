@@ -19,6 +19,7 @@ namespace entity_core.Views.Blogs
         }
 
         public Blog Blog { get; set; }
+        public IList<Post> Post { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,12 +29,14 @@ namespace entity_core.Views.Blogs
             }
 
             Blog = await _context.Blogs.FirstOrDefaultAsync(m => m.BlogId == id);
+            Post = await _context.Posts
+               .Include(p => p.Blog).ToListAsync();
 
             if (Blog == null)
             {
                 return NotFound();
             }
             return Page();
-        }
+        } 
     }
 }

@@ -25,5 +25,7 @@ namespace entity_core.Views
             Post = await _context.Posts
                 .Include(p => p.Blog).ToListAsync();
         }
+
+
     }
 }

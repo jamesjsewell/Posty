@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.Post[0].Content)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Post[0].Blog)
+                Blog Id
             </th>
             <th></th>
         </tr>
@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Content)
             </td>
             <td>
-               <a asp-page="../Blogs/Details" asp-route-id="@item.Blog.BlogId"> @Html.DisplayFor(modelItem => item.Blog.Url) </a>
+               <a asp-page="../Blogs/Details" asp-route-id="@item.Blog.BlogId"> @Html.DisplayFor(modelItem => item.Blog.BlogId) </a>
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.PostId">Edit</a> |
